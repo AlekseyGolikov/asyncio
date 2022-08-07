@@ -1,4 +1,5 @@
 import asyncpg
+import asyncio
 
 
 QUERY = '''INSERT INTO some_test_table VALUES ($1, $2, $3)'''
