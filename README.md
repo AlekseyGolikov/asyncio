@@ -1,3 +1,3 @@
 # asyncio
 
-exam1 - асинхронная запись множества транзакций в БД PostgreSQL
+exam1 - асинхронная запись в БД PostgreSQL
