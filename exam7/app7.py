@@ -12,7 +12,7 @@ def timer(func):
         return f
     return wrapper
 
-connects = ['task1','task2','task3','task4','task5','task6','task7','task8','task9','task10']
+connects = ['task1','task2','task3','task4']
 
 async def execute(delay, value):
     await asyncio.sleep(delay)
@@ -21,14 +21,15 @@ async def execute(delay, value):
 @timer
 async def main():
     tasks = []
-    for i in range(10):
+    for i, connect in enumerate(connects):
         # вместо i можно использовать random.randint(1,11)
-        tasks.append(asyncio.create_task(execute(i, connects[i])))
+        tasks.append(asyncio.create_task(execute(i, connect)))
     await asyncio.gather(*tasks)
 
+while True:
+    asyncio.run(main())
 
-# asyncio.run(main())
-loop = asyncio.get_event_loop()
-loop.run_until_complete(main())
-loop.close()
+# loop = asyncio.get_event_loop()
+# loop.run_until_complete(main())
+# loop.close()
 
