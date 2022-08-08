@@ -13,20 +13,23 @@ async def main():
     """ Using asyncio.create_task() method to run coroutines concurrently as asyncio"""
     tasks = []
     for i in range(10):
-        tasks.append(asyncio.create_task(execute(random.randint(1,11), connects[i])))
+        # вместо i можно использовать random.randint(1,11)
+        tasks.append(asyncio.create_task(execute(i, connects[i])))
 
     print(tasks)
 
     print('started at {}'.format(time.strftime('%X')))
+    start = time.perf_counter()
     # Wait until both tasks are completed (should take around 2 secs. )
 
     await asyncio.gather(*tasks)
 
     print('finished ad {}'.format(time.strftime('%X')))
+    end = time.perf_counter() - start
+    print(end)
 
-asyncio.run(main())
-# loop = asyncio.get_event_loop()
-# loop.run_until_complete(main())
-# loop.close()
+# asyncio.run(main())
+loop = asyncio.get_event_loop()
+loop.run_until_complete(main())
+loop.close()
 
-print('end.')
